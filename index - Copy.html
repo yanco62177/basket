@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Game Score Board</title>
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/fontawesome/js/all.min.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+	<style>
+.log {
+  background-image: url('logo1.jpg');
+  background-position: center;
+	backdrop-filter: blur(2px);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+}
+</style>
+</head>
+<body class="log">
+
+    <div>
+        <div class="float-end pt-3">
+		<div class="bg-dark bg-gradient">
+            <a href="javascript:void(0)" class="text-light text-decoration-none fw-bolder h4" id="mgt_team">
+                <h1 class="text-center text-light px-5">Settings</h1>
+            </a>
+        </div>
+		</div>
+        
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 my-3">
+        <div class="row  mx-0">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+			<div class="bg-dark bg-gradient">
+                <div class="team-card border border-light py-4">
+                    <h2 class="text-center fw-bolder text-light home_team" >---------</h2>
+                    <h4 class="text-center fw-bolder text-light">(HOME)</h4>
+                    <div class="d-flex justify-content-center">
+                        <div class="score-display bg-dark text-light fw-bolder border border-light text-center" id="home_score">0</div>
+                    </div>
+                </div></div>
+            </div>
+			
+            <div class="col-lg-6 col-md-6 col-sm-12">
+			<div class="bg-dark bg-gradient">
+                <div class="team-card border border-light py-4">
+                    <h2 class="text-center fw-bolder text-light away_team" >---------</h2>
+                    <h4 class="text-center fw-bolder text-light">(AWAY)</h4>
+                    <div class="d-flex justify-content-center">
+                        <div class="score-display bg-dark text-light fw-bolder border border-light text-center" id="away_score">0</div>
+                    </div>
+                </div></div>
+            </div>
+        </div>
+    </div>
+</br></br></br></br></br></br></br></br>
+    <div class="col-lg-12 col-md-12 col-sm-12 my-3">
+<form>
+	<div class="bg-dark bg-gradient">
+        <div class="row mx-2">
+            <div class="col-lg-6 col-md-6 col-sm-12 mx-0 border border-light py-2 d-flex justify-content-center align-items-center gx-4">
+                <label for="team" class="fw-bolder text-light mx-1">Team: </label>
+                            <select name="team" id="team" class="form-select rounded-0" required>
+                                <option value="home">Home</option>
+                                <option value="away">Away</option>
+                            </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 mx-0 border border-light py-2 d-flex justify-content-center align-items-center gx-4">
+                <label for="score" class="fw-bolder text-light mx-1">Points Ctrl: </label>
+                            <select name="score" id="score" class="form-select rounded-0" required>
+                                <option value="+1">+1</option>
+                                <option value="+2">+2</option>
+								<option value="+3">+3</option>
+                                <option value="-1">-1</option>
+								<option value="-2">-2</option>
+                                <option value="-3">-3</option>
+                            </select>
+<button class="btn btn-outline-lignt border-light rounded-1 text-light fw-bolt point_button mx-1" type="button" data-team="away" data-value="+1">Add Score</button>
+            </div>
+
+        </div></div></form>
+
+        <div class="row mx-2 justify-content-center mt-3">
+            <div class="col-auto">
+			<div class="bg-dark bg-gradient">
+                <button class="btn btn-sm btn-outline-dark border-light text-light fw bolder" id="end_game">End Game</button>
+            </div>
+			</div>
+			
+			<div class="col-auto">
+			<div class="bg-dark bg-gradient">
+                <button class="btn btn-sm btn-outline-dark border-light text-light fw bolder" id="reset-scoreboard">Reset Game</button>
+            </div>
+			</div>
+        </div>
+</div>
+    <!-- Form Modal -->
+    <div class="modal fade" id="endGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog rounded-0 modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content rounded-0">
+            <div class="modal-body rounded-0">
+                <div class="container-fluid">
+                    <div class="float-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <h1 class="text-center fw-bolder" id="winning_team"></h1>
+                    <h4 class="text-center text-muted fw-bolder" id="winning_text"></h4>
+                    <h1 class="text-center fw-bolder" id="winning_score"></h1></br>
+                    <h4 class="text-center text-muted fw-bolder" id="losing_text"></h4></br>
+					<h1 class="text-center fw-bolder" id="losing_team"></h1>
+					<h4 class="text-center text-muted fw-bolder" id="winning_text2"></h4>
+                    <h1 class="text-center fw-bolder" id="losing_score"></h1>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="teamMGTmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog rounded-0 modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content rounded-0">
+            <div class="modal-header rounded-0">
+                <h1 class="modal-title fs-5">Game Settings</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body rounded-0">
+                <div class="container-fluid">
+                    <form action="" id="team-form" method="POST">
+                        <input type="hidden" name="id" value="">
+                        <div class="mb-3">
+                            <label for="home_team_name" class="control-label">Team Name (HOME)</label>
+                            <input type="text" class="form-control rounded-0" id="home_team_name" name="home_team_name" value="" required="required">
+                        </div>
+                        <div class="mb-3">
+                            <label for="away_team_name" class="control-label">Team Name (Away)</label>
+                            <input type="text" class="form-control rounded-0" id="away_team_name" name="away_team_name" value="" required="required">
+                        </div>
+                        <div class="mb-3">
+                            <label for="current_set" class="control-label">Current Quarter/Set</label>
+                            <select name="current_set" id="current_set" class="form-select rounded-0" required>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>Overtime</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary rounded-0" form="team-form">Save</button>
+                <button type="button" class="btn btn-sm btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./assets/js/app.js"></script>
+</html>
+

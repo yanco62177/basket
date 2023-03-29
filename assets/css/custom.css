@@ -1,0 +1,34 @@
+html, body{
+    min-height:calc(100%);
+    width:calc(100%);
+}
+body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height: 100vh;
+}
+.team-card{
+    min-height: 30vh;
+    width: calc(100%);
+}
+
+.team-card .score-display {
+    height: 25vh;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9rem;
+    font-family: monospace;
+}
+.set-card .display {
+    height: 18vh;
+    width: 18vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    font-family: monospace;
+}
